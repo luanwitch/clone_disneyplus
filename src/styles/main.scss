@@ -1,5 +1,69 @@
-$bgcolor: rgb(0, 187, 255);
+@use 'variaveis';
+@use 'hero';
+
+@font-face { 
+    font-family: Avennir;
+    src: url(../../assets/fonts/Avenir-Bold.woff2);
+    font-weight: 400; 
+}
+
+@font-face { 
+    font-family: Avennir;
+    src: url(../../assets/fonts/Avenir-Regular.woff2);
+    font-weight: 700; 
+}
+
+// Criando o reset
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body { 
-    background-color: $bgcolor;
+    background-color:variaveis.$corDeFundo;
+}
+
+// Mixin de texto com cor e tamanho de fonte
+@mixin text($fontSize: 16px) { 
+    font-size: $fontSize;
+    line-height: $fontSize + 10px; // Aqui soma o valor de $fontSize com 10px
+    color: variaveis.$corTextoPrincipal;
+}
+
+// Mixin de título com cor diferente
+@mixin title($fontSize: 40px){
+    @include text($fontSize);
+    color: variaveis.$corTextoSecundario;
+}
+
+// Estilos específicos
+.text--big { 
+    @include text(18px); // Tamanho de fonte de 18px
+}
+
+.text { 
+    @include text(16px); // Tamanho de fonte de 16px
+}
+
+.text--small { 
+    @include text(12px); // Tamanho de fonte de 12px
+}
+
+.title--big { 
+    @include title(44px); // Tamanho de fonte de 44px para o título
+}
+
+.title { 
+    @include title; // Título com tamanho padrão (40px)
+}
+
+.title--small { 
+    @include title(28px); // Tamanho de fonte de 28px para o título
+}
+
+.link-text { 
+    @include text(18px); // Tamanho de fonte de 18px
+    color: variaveis.$corTextoSecundario; // Cor de texto secundário
+    text-decoration: underline; // Decoração de sublinhado
 }
