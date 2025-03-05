@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const questions = document.querySelectorAll('.faq__questions__item__question');
     const heroSection = document.querySelector('.hero');
     const alturaHero = heroSection ? heroSection.clientHeight : 0; // Evita erro se não houver .hero
-
+    
     // Evento de scroll para mostrar ou ocultar o header
     window.addEventListener('scroll', function() {
         const posicaoAtual = window.scrollY;
