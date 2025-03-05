@@ -3,12 +3,23 @@ const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify');
+const del = require('del');
 
 // Função para processar scripts
 function scripts() {
     return gulp.src('./src/scripts/*.js')  // Certifique-se de que o caminho está correto para seus arquivos .js
         .pipe(uglify())  // Minifica os arquivos JavaScript
         .pipe(gulp.dest('./public/js'));  // Salva os arquivos minificados no diretório public/js
+}
+
+function clean() {
+    return del(['./public/**', '!./public']);
+}
+
+// Função para limpar a pasta public
+async function clean() {
+    const { deleteAsync } = await import('del');
+    return deleteAsync(['./public/**', '!./public']);
 }
 
 // Função para otimizar as imagens
