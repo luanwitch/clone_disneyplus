@@ -11,6 +11,13 @@ function scripts() {
         .pipe(gulp.dest('./dist/js'));  // Salva os arquivos minificados no diretório dist/js
 }
 
+// Função para otimizar as imagens
+function images() { 
+    return gulp.src('./src/images/**/*')  // Certifique-se de que este é o caminho correto das imagens
+        .pipe(imagemin()) // Minifica as imagens
+        .pipe(gulp.dest('./dist/images/'));  // Certifique-se de que as imagens estão sendo copiadas para o diretório correto
+}
+
 // Função para compilar o Sass
 function styles() {
     return gulp.src('./src/styles/*.scss')  
