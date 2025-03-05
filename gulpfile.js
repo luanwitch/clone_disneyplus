@@ -4,32 +4,25 @@ const sass = require('gulp-sass')(require('sass'));
 const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify');
 
-// Função para processar scripts (corrigido para usar 'gulp' em vez de 'GulpClient')
+// Função para processar scripts
 function scripts() {
     return gulp.src('./src/scripts/*.js')  // Certifique-se de que o caminho está correto para seus arquivos .js
         .pipe(uglify())  // Minifica os arquivos JavaScript
-        .pipe(gulp.dest('./dist/js'));  // Salva os arquivos minificados no diretório dist/js
+        .pipe(gulp.dest('./public/js'));  // Salva os arquivos minificados no diretório public/js
 }
 
 // Função para otimizar as imagens
 function images() { 
     return gulp.src('./src/images/**/*')  // Certifique-se de que este é o caminho correto das imagens
         .pipe(imagemin()) // Minifica as imagens
-        .pipe(gulp.dest('./dist/images/'));  // Certifique-se de que as imagens estão sendo copiadas para o diretório correto
+        .pipe(gulp.dest('./public/images/'));  // Salva as imagens otimizadas na pasta public/images
 }
 
 // Função para compilar o Sass
 function styles() {
     return gulp.src('./src/styles/*.scss')  
         .pipe(sass({ outputStyle: 'compressed' })) // Compila e comprime o Sass
-        .pipe(gulp.dest('./dist/css/')); // Salva o CSS gerado
-}
-
-// Função para otimizar as imagens
-function images() {
-    return gulp.src('./src/images/**/*')  // Ajustando para capturar imagens
-        .pipe(imagemin()) // Minifica as imagens
-        .pipe(gulp.dest('./dist/images/'));  // Salva as imagens otimizadas na pasta dist/images
+        .pipe(gulp.dest('./public/css/')); // Salva o CSS gerado na pasta public/css
 }
 
 // Exportando as funções para que o Gulp execute as tarefas
