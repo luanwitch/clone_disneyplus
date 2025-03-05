@@ -1,0 +1,70 @@
+.plans { 
+    padding: 5.6vw;  
+
+    @media (max-width: 1024px) {
+        padding: 6vw 4vw; // Ajuste para telas médias
+    }
+
+    @media (max-width: 768px) {
+        padding: 8vw 4vw; // Ajuste de espaçamento para telas pequenas
+    }
+
+    // Alinhar o título
+    .title--big {
+        text-align: center;
+        margin-bottom: 50px; 
+    }
+
+    &__list { 
+        display: flex;
+        justify-content: center; 
+        gap: 20px; 
+
+        @media (max-width: 1024px) {
+            flex-wrap: wrap; // Permite quebra de linha em telas médias
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column; // Itens empilhados em telas menores
+            align-items: center; // Centraliza os itens
+        }
+
+        &__item {
+            text-align: center;
+            padding: 60px 44px 44px;
+            max-width: 380px;
+            width: 100%;
+            border-radius: 8px; // Suaviza as bordas para um design mais moderno
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Adiciona um leve sombreamento
+
+            &:nth-child(2) {
+                background-image: url('../images/fundo_combo_plus.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+            }            
+
+            img { 
+                height: 86px;
+                max-width: 100%;
+            }
+
+            strong { 
+                display: block;
+                margin-top: 24px;
+                font-size: 1.2em; // Ajuste para melhor leitura
+            }
+        }
+    }
+
+    p { 
+        text-align: center;
+        max-width: 600px; 
+        margin: 20px auto; 
+        font-size: 1rem;
+
+        @media (max-width: 768px) {
+            font-size: 0.9rem; // Reduz levemente o tamanho do texto para telas pequenas
+        }
+    }
+}
+

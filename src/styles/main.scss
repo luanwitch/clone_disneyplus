@@ -1,16 +1,23 @@
 @use 'variaveis';
 @use 'hero';
+@use 'shows';
+@use 'plans';
+@use 'available-devices';
+@use 'faq';
+@use 'footer';
+@use 'header';
+@use "sass:color";
 
 @font-face { 
-    font-family: Avennir;
-    src: url(../../assets/fonts/Avenir-Bold.woff2);
-    font-weight: 400; 
+    font-family: 'Avenir';
+    src: url(../../assets/fonts/Avenir-Regular.woff2); /* Avenir Regular */
+    font-weight: 400; /* Peso normal */
 }
 
 @font-face { 
-    font-family: Avennir;
-    src: url(../../assets/fonts/Avenir-Regular.woff2);
-    font-weight: 700; 
+    font-family: 'Avenir';
+    src: url(../../assets/fonts/Avenir-Bold.woff2); /* Avenir Bold */
+    font-weight: 700; /* Peso negrito */
 }
 
 // Criando o reset
@@ -18,52 +25,230 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Avenir', sans-serif;
+    list-style: none;
+    letter-spacing: 1px;
 }
 
 body { 
-    background-color:variaveis.$corDeFundo;
+    background-color: variaveis.$corDeFundo;
 }
 
 // Mixin de texto com cor e tamanho de fonte
 @mixin text($fontSize: 16px) { 
     font-size: $fontSize;
-    line-height: $fontSize + 10px; // Aqui soma o valor de $fontSize com 10px
+    line-height: $fontSize + 10px;
     color: variaveis.$corTextoPrincipal;
 }
 
 // Mixin de título com cor diferente
-@mixin title($fontSize: 40px){
+@mixin title($fontSize: 40px) {
     @include text($fontSize);
     color: variaveis.$corTextoSecundario;
 }
 
 // Estilos específicos
 .text--big { 
-    @include text(18px); // Tamanho de fonte de 18px
+    @include text(18px);
+
+    @media(max-width: 768px) { 
+        @include text(15px);
+    }
 }
 
 .text { 
-    @include text(16px); // Tamanho de fonte de 16px
+    @include text(16px);
+
+    @media(max-width: 768px) { 
+        @include title(14px);
+    }
 }
 
 .text--small { 
-    @include text(12px); // Tamanho de fonte de 12px
+    @include text(12px);
+
+    @media(max-width: 768px) { 
+        @include title(11px);
+    }
 }
 
 .title--big { 
-    @include title(44px); // Tamanho de fonte de 44px para o título
+    @include title(44px);
+    text-align: center;
+
+    @media(max-width: 768px) { 
+        @include title(26px);
+    }
 }
 
 .title { 
-    @include title; // Título com tamanho padrão (40px)
+    @include title(40px);
+    display: block;
+    margin: 0 auto 20px;
+    text-align: center;
+
+    @media(max-width: 768px) { 
+        @include title(24px);
+    }
+}
+
+.title img { 
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    text-align: center;
 }
 
 .title--small { 
-    @include title(28px); // Tamanho de fonte de 28px para o título
+    @include title(28px);
+
+    @media(max-width: 768px) { 
+        @include title(22px);
+    }
 }
 
 .link-text { 
-    @include text(18px); // Tamanho de fonte de 18px
-    color: variaveis.$corTextoSecundario; // Cor de texto secundário
-    text-decoration: underline; // Decoração de sublinhado
+    @include text(18px);
+    color: variaveis.$corTextoSecundario;
+    text-decoration: underline;
+}
+
+.hero__content {
+    margin-left: -5vw;
+}
+
+.hero__content__combos {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.button { 
+    display: flex;
+    align-items: center;
+    width: 180px;
+    height: 45px;
+    font-size: 16px;
+    color: variaveis.$corTextoSecundario;
+    background-color: variaveis.$corPrimaria;
+    text-transform: uppercase;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid variaveis.$corPrimaria;
+    justify-content: center;
+
+    @media(max-width: 768px){ 
+        font-size: 16px;
+    }
+
+    &:hover { 
+        background-color: color.scale(variaveis.$corPrimaria, $lightness: 3%);
+    }
+
+    &--secondary { 
+        background-color: variaveis.$corDeFundoBotaoSecundaria;
+        border-color: variaveis.$corDeFundoBotaoSecundaria;
+    }   
+
+        &:hover { 
+            background-color: color.scale(variaveis.$corDeFundoBotaoSecundaria, $lightness: 3%);
+        }
+        
+
+    &--dark { 
+        background-color: rgba(variaveis.$corDeFundoBotaoDark, 0.8);
+        border-color: variaveis.$corTextoSecundario;
+
+        &:hover { 
+            background-color: variaveis.$corTextoSecundario;
+            color: variaveis.$corDeFundo;
+        }
+    }
+    
+}
+
+.image-text-section {
+    padding: 5.6vw;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+    }
+
+    &__image {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    &__text {
+        flex: 1;
+        padding: 0 2vw;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &:nth-of-type(2) .image-text-section__content {
+        flex-direction: row-reverse;
+    }
+
+    // Mantendo a classe errada "widht" como no seu código original
+    &--image-full-widht {
+        display: block;
+        width: 100%;
+        position: relative;
+    
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    
+        &__content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            padding: 20px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+
+            @media(max-width: 768px){
+                position: relative;
+                left: 0;
+                width: 100%;
+            }
+        }
+    
+        &__text {
+            .title {
+                margin-bottom: 16px;
+            }
+            p {
+                text-align: center;
+            }
+        }
+    }
 }

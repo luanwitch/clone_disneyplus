@@ -1,0 +1,80 @@
+@use 'variaveis';
+
+.header { 
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000; // Mantém sobre os outros elementos
+    background-color: variaveis.$corDeFundoBotaoDark;
+    transition: background-color .5s ease;
+
+    &--is-hidden { 
+        background-color: transparent;
+    }
+
+    .header {
+        &--is-hidden {
+            .header__logo { 
+                opacity: 0 !important;
+                visibility: visible !important;
+                transition: opacity .5s ease;
+            }
+        }
+    }
+    
+    &__container {
+        padding: 8px 36px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; // Garante que os itens fiquem alinhados corretamente
+
+        @media (max-width: 768px) {
+            padding: 0 12px 0 20px; // Ajuste de padding no mobile
+            flex-direction: column; // Coloca os itens do header em coluna
+            align-items: flex-start; // Alinha os itens à esquerda no mobile
+        }
+    } 
+
+    &__logo {
+        max-width: 80px;
+        width: 100%;
+        margin: 5px;
+        transition: opacity .5s ease;
+
+        @media (max-width: 768px) { 
+            max-width: 64px; // Ajuste do tamanho do logo no mobile
+            margin-bottom: 10px; // Espaçamento inferior no mobile
+        }
+    }
+
+    &__links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        @media (max-width: 768px) {
+            flex-direction: column; // Coloca os itens de menu em coluna no mobile
+            gap: 15px; // Maior espaçamento entre os links no mobile
+        }
+
+        &__item {
+            margin: 5px;
+            transition: opacity .5s ease;
+        }
+    }
+
+    .button { 
+        height: 50px;
+        justify-content: center;
+        transition: all .3s ease;
+
+        @media (max-width: 768px) { 
+            font-size: 13px;
+            padding: 8px 11px;
+            height: 40px;
+            letter-spacing: 0;
+        }
+    }
+}

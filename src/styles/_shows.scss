@@ -1,0 +1,65 @@
+@use 'variaveis';
+
+.shows {
+    padding: 2vw 5.6vw;
+    min-height: 60vw;
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); // 3 colunas para telas grandes
+        gap: 24px;
+        margin-top: 44px;
+        display: none;
+        align-items: start;
+
+        // Responsividade
+        @media (max-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr); // 2 colunas no tablet
+        }
+
+        @media (max-width: 600px) {
+            grid-template-columns: 1fr; // 1 coluna no celular (corrigido)
+        }
+
+        .button { 
+            margin-top: 24px;
+        }
+
+        &--is-active { 
+            display: grid;
+        }
+
+        &__item {
+            display: flex;
+            justify-content: center; // Centraliza a imagem dentro do item
+            align-items: center;
+            width: 100%;
+            
+            img {
+                width: 100%; // Ocupa todo o espaço disponível no container
+                height: auto; // Mantém a proporção
+                aspect-ratio: 16/9; // Mantém uma proporção padrão
+                object-fit: cover; // Ajusta a imagem para cobrir o container sem distorcer (alterado de contain para cover)
+                border-radius: 4px;
+            }
+        }
+    }
+
+    &__tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap; // Permite que os botões quebrem linha em telas menores
+
+        @media (max-width: 768px) {
+            gap: 5px; // Reduz espaço entre os botões em telas pequenas
+            // Removido white-space: nowrap e overflow: scroll para evitar rolagem horizontal nos botões
+            padding-left: 20px;
+        }
+
+        &--is-active { 
+            border-bottom: 3px solid variaveis.$corTextoSecundario;
+        }
+    }
+}

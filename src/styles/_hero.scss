@@ -4,14 +4,33 @@
     padding: 5.6vw;
     min-height: 80vh;
     background-image: url('../images/hero_desktop.jpeg'); 
-    background-size: cover; // Aumenta a imagem para cobrir toda a área
+    background-size: cover;
+    background-position: center;
     text-align: center;
 
+    @media (max-width: 768px) { 
+        background-image: url('../images/hero_celular.jpeg'); 
+        padding-top: calc(50vw + 25px);
+        background-size: contain;
+        background-repeat: no-repeat; /* Removido ponto e vírgula extra */
+        margin-top: -55px;
+    }
+
+    .button { 
+        margin-top: 2vw;
+        margin-bottom: 8px;
+    }
+
     &__content { 
-        max-width: 800px; // Aumentei a largura do conteúdo principal
+        max-width: 800px;
+        margin: 0 auto; // Centraliza o conteúdo principal
+
+        @media (max-width: 768px) {
+            max-width: 90%; // Ajusta para ocupar mais espaço na tela menor
+        }
 
         &_branding { 
-            max-width: 400px; // Aumentei o tamanho do logo Disney+
+            max-width: 400px;
             margin: 0 auto;
         }
 
@@ -22,50 +41,67 @@
         p {
             margin-bottom: 20px;
 
-                &:last-child { 
-                    margin-top: 60px;
-                }
+            &:last-child { 
+                margin-top: 60px;
+            }
         }
 
         &__combos { 
             display: flex;
-            justify-content: center; // Centraliza os combos
-            gap: 20px; // Espaço entre os combos
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; // Permite quebra de linha em telas menores
+            justify-content: space-between; // Ajusta a distribuição dos combos
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: center; // Centraliza os combos no mobile
+                width: 100%; // Garante que ocupe toda a largura no mobile
+                display: block;
+            }
 
             &__combo { 
-                width: 50%; // Cada combo ocupa metade da largura disponível
+                width: 100%;
+                max-width: 320px; // Limita o tamanho dos combos em telas grandes
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                align-items: center; // Alinha os itens ao centro
+
+                @media (max-width: 768px) {
+                    margin-bottom: 24px; // Espaço entre os combos no mobile
+                    display: block;
+                }
             }
 
             img { 
-                max-width: 250px; // Aumenta o tamanho dos logos do Disney+ e Star+
-                height: auto; 
+                max-width: 280px;
+                height: auto;
             }
 
             button { 
-                display: block;
-                width: 100px;
-                font-size: 18px;
+                display: inline-block; 
+                width: 180px;
+                height: 45px;
+                padding: 10px 15px;
+                font-size: 16px;
                 color: variaveis.$corTextoSecundario;
-                background-color: #6421ff;
+                background-color: variaveis.$corPrimaria; 
                 text-transform: uppercase;
-                border-radius: 4px;
-                margin-top: 2vw;
-                margin-bottom: 8px;
+                border-radius: 6px;
+                margin-top: 10px;
+                font-weight: bold;
             }
-        }
-    }    
+        }    
+    }
 }
 
 /* Ajuste para os logos */
-.hero__content-branding img {
-    max-width: 300px; // Aumenta o logo Disney+
+.hero__content_branding img {
+    max-width: 300px;
     height: auto;
 }
 
-.hero_content_combos_combo img {
-    max-width: 220px; // Aumenta os logos Disney+ e Star+
+.hero__content__combos__combo img { 
+    max-width: 220px;
     height: auto;
 }
